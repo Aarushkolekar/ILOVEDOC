@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLovedoc - Free Online PDF Tools | Merge, Split, Convert PDF</title>
+    <meta name="description" content="iLovedoc offers free online PDF tools to merge, split, compress, convert, and edit PDF files. 100% secure and easy to use.">
+    <meta name="keywords" content="PDF, merge PDF, split PDF, compress PDF, convert PDF, edit PDF, online PDF tools, iLovedoc">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --primary-dark: #2980b9;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Ad Container */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .ad-slot {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #ccc;
+            border-radius: 4px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .ad-slot.large {
+            max-width: 970px;
+            height: 250px;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+            color: var(--dark-color);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .tool-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .tool-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .feature-icon {
+            background: var(--primary-color);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            padding: 80px 0;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 60px 20px;
+            margin: 30px auto;
+            max-width: 600px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+        }
+
+        .upload-icon {
+            font-size: 50px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .upload-text {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .upload-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .upload-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Tool Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .modal-title {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .file-list {
+            margin: 20px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .file-name {
+            flex: 1;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-size: 16px;
+        }
+
+        .process-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto 0;
+            transition: var(--transition);
+        }
+
+        .process-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                margin-top: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .ad-slot.large {
+                height: 200px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>iLovedoc</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">All Tools</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline">Log In</button>
+                    <button class="btn btn-primary">Sign Up</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Your PDF Problems, Solved with iLovedoc</h1>
+            <p>iLovedoc offers a suite of easy-to-use online PDF tools. Merge, split, compress, convert, and edit PDF files for free.</p>
+            <button class="btn btn-primary" style="background: var(--white); color: var(--primary-color);">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Ad Container -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-slot large" id="ad-banner-top">
+                <!-- AdMob Banner Ad will be displayed here -->
+                <span>Advertisement</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tools Section -->
+    <section class="tools-section">
+        <div class="container">
+            <h2 class="section-title">All PDF Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card" data-tool="merge">
+                    <div class="tool-icon">
+                        <i class="fas fa-object-group"></i>
+                    </div>
+                    <h3>Merge PDF</h3>
+                    <p>Combine multiple PDFs into one unified document</p>
+                </div>
+                <div class="tool-card" data-tool="split">
+                    <div class="tool-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Split PDF</h3>
+                    <p>Separate one PDF into multiple files</p>
+                </div>
+                <div class="tool-card" data-tool="compress">
+                    <div class="tool-icon">
+                        <i class="fas fa-compress-alt"></i>
+                    </div>
+                    <h3>Compress PDF</h3>
+                    <p>Reduce file size while optimizing for maximal PDF quality</p>
+                </div>
+                <div class="tool-card" data-tool="convert">
+                    <div class="tool-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Convert PDF</h3>
+                    <p>JPG to PDF, PDF to JPG, and more format conversions</p>
+                </div>
+                <div class="tool-card" data-tool="edit">
+                    <div class="tool-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Edit PDF</h3>
+                    <p>Add text, images, shapes or freehand drawings to your PDF</p>
+                </div>
+                <div class="tool-card" data-tool="watermark">
+                    <div class="tool-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Watermark</h3>
+                    <p>Add a watermark to your PDF documents</p>
+                </div>
+                <div class="tool-card" data-tool="rotate">
+                    <div class="tool-icon">
+                        <i class="fas fa-redo-alt"></i>
+                    </div>
+                    <h3>Rotate PDF</h3>
+                    <p>Rotate your PDF files the way you need them</p>
+                </div>
+                <div class="tool-card" data-tool="unlock">
+                    <div class="tool-icon">
+                        <i class="fas fa-unlock"></i>
+                    </div>
+                    <h3>Unlock PDF</h3>
+                    <p>Remove password protection from PDF files</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Container -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-slot" id="ad-banner-middle">
+                <!-- AdMob Banner Ad will be displayed here -->
+                <span>Advertisement</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose iLovedoc?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>100% Secure</h3>
+                        <p>Your files are automatically deleted from our servers after processing. No one has access to your files.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Fast Processing</h3>
+                        <p>Our optimized algorithms process your files quickly, saving you time and effort.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Cloud-Based</h3>
+                        <p>Access iLovedoc from any device with an internet connection. No installation required.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section">
+        <div class="container">
+            <h2 class="section-title">Ready to Process Your PDF?</h2>
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <p class="upload-text">Drag & Drop your files here</p>
+                <p>or</p>
+                <div class="upload-btn">Select Files</div>
+                <input type="file" id="fileInput" multiple style="display: none;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Container -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-slot large" id="ad-banner-bottom">
+                <!-- AdMob Banner Ad will be displayed here -->
+                <span>Advertisement</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>iLovedoc</h3>
+                    <p>Your all-in-one PDF solution. Easy, fast, and secure.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">All Tools</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Desktop Version</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 iLovedoc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tool Modal -->
+    <div class="modal" id="toolModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="modal-title" id="modalTitle">Merge PDF Files</h2>
+            <p>Select PDF files to merge in the order you want</p>
+            <div class="file-list" id="fileList">
+                <!-- Files will be listed here -->
+            </div>
+            <div class="upload-area" id="modalUploadArea">
+                <div class="upload-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <p class="upload-text">Add more files</p>
+            </div>
+            <button class="process-btn" id="processBtn">Merge PDF</button>
+        </div>
+    </div>
+
+    <!-- AdMob Integration Script -->
+    <script>
+        // AdMob Configuration - Using your provided Ad Unit ID
+        const ADMOB_CONFIG = {
+            // Banner Ad Unit IDs - Using your provided ID for all placements
+            bannerTop: 'ca-app-pub-9892917958541817/9541680221',
+            bannerMiddle: 'ca-app-pub-9892917958541817/9541680221',
+            bannerBottom: 'ca-app-pub-9892917958541817/9541680221',
+            
+            // Interstitial Ad Unit ID (for between actions)
+            interstitial: 'ca-app-pub-9892917958541817/9541680221'
+        };
+
+        // Initialize AdMob
+        function initializeAdMob() {
+            // In a real implementation, you would initialize the AdMob SDK here
+            console.log('AdMob initialized with config:', ADMOB_CONFIG);
+            
+            // Display banner ads
+            displayBannerAd('ad-banner-top', ADMOB_CONFIG.bannerTop);
+            displayBannerAd('ad-banner-middle', ADMOB_CONFIG.bannerMiddle);
+            displayBannerAd('ad-banner-bottom', ADMOB_CONFIG.bannerBottom);
+        }
+
+        // Display banner ad
+        function displayBannerAd(containerId, adUnitId) {
+            const container = document.getElementById(containerId);
+            if (container) {
+                // In a real implementation, this would load an actual ad
+                container.innerHTML = `
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px;">
+                        <div style="text-align: center;">
+                            <p style="margin: 0; font-size: 14px; color: #666;">AdMob Banner Ad</p>
+                            <p style="margin: 5px 0 0; font-size: 12px; color: #999;">Ad Unit: ${adUnitId}</p>
+                            <p style="margin: 5px 0 0; font-size: 10px; color: #bbb;">Your AdMob ads will appear here</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Show interstitial ad
+        function showInterstitialAd() {
+            // In a real implementation, this would display an interstitial ad
+            console.log('Showing interstitial ad:', ADMOB_CONFIG.interstitial);
+            
+            // For demo purposes, we'll just log to console
+            return true;
+        }
+
+        // Tool selection functionality
+        document.querySelectorAll('.tool-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const tool = this.getAttribute('data-tool');
+                openToolModal(tool);
+            });
+        });
+
+        // Open tool modal
+        function openToolModal(tool) {
+            const modal = document.getElementById('toolModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const processBtn = document.getElementById('processBtn');
+            
+            // Set modal title and button text based on selected tool
+            const toolNames = {
+                'merge': 'Merge PDF',
+                'split': 'Split PDF',
+                'compress': 'Compress PDF',
+                'convert': 'Convert PDF',
+                'edit': 'Edit PDF',
+                'watermark': 'Add Watermark',
+                'rotate': 'Rotate PDF',
+                'unlock': 'Unlock PDF'
+            };
+            
+            const actionTexts = {
+                'merge': 'Merge PDF',
+                'split': 'Split PDF',
+                'compress': 'Compress PDF',
+                'convert': 'Convert PDF',
+                'edit': 'Edit PDF',
+                'watermark': 'Add Watermark',
+                'rotate': 'Rotate PDF',
+                'unlock': 'Unlock PDF'
+            };
+            
+            modalTitle.textContent = toolNames[tool];
+            processBtn.textContent = actionTexts[tool];
+            
+            modal.style.display = 'flex';
+            
+            // Show interstitial ad when opening a tool
+            showInterstitialAd();
+        }
+
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('toolModal').style.display = 'none';
+        });
+
+        // File upload functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const modalUploadArea = document.getElementById('modalUploadArea');
+        const modalFileInput = document.createElement('input');
+        modalFileInput.type = 'file';
+        modalFileInput.multiple = true;
+        modalFileInput.style.display = 'none';
+
+        // Main upload area
+        uploadArea.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--primary-color)';
+            uploadArea.style.backgroundColor = 'rgba(52, 152, 219, 0.05)';
+        });
+
+        uploadArea.addEventListener('dragleave', function() {
+            uploadArea.style.borderColor = '#ccc';
+            uploadArea.style.backgroundColor = 'transparent';
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ccc';
+            uploadArea.style.backgroundColor = 'transparent';
+            
+            if (e.dataTransfer.files.length > 0) {
+                handleFiles(e.dataTransfer.files);
+            }
+        });
+
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files.length > 0) {
+                handleFiles(fileInput.files);
+            }
+        });
+
+        // Modal upload area
+        modalUploadArea.addEventListener('click', function() {
+            modalFileInput.click();
+        });
+
+        modalUploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            modalUploadArea.style.borderColor = 'var(--primary-color)';
+            modalUploadArea.style.backgroundColor = 'rgba(52, 152, 219, 0.05)';
+        });
+
+        modalUploadArea.addEventListener('dragleave', function() {
+            modalUploadArea.style.borderColor = '#ccc';
+            modalUploadArea.style.backgroundColor = 'transparent';
+        });
+
+        modalUploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            modalUploadArea.style.borderColor = '#ccc';
+            modalUploadArea.style.backgroundColor = 'transparent';
+            
+            if (e.dataTransfer.files.length > 0) {
+                addFilesToList(e.dataTransfer.files);
+            }
+        });
+
+        modalFileInput.addEventListener('change', function() {
+            if (modalFileInput.files.length > 0) {
+                addFilesToList(modalFileInput.files);
+            }
+        });
+
+        // Handle file selection
+        function handleFiles(files) {
+            // For demo purposes, we'll just open the merge modal
+            openToolModal('merge');
+            addFilesToList(files);
+        }
+
+        // Add files to the file list in modal
+        function addFilesToList(files) {
+            const fileList = document.getElementById('fileList');
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                // Create file item
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                
+                // File name
+                const fileName = document.createElement('div');
+                fileName.className = 'file-name';
+                fileName.textContent = file.name;
+                
+                // File actions
+                const fileActions = document.createElement('div');
+                fileActions.className = 'file-actions';
+                
+                const moveUpBtn = document.createElement('button');
+                moveUpBtn.className = 'action-btn';
+                moveUpBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+                
+                const moveDownBtn = document.createElement('button');
+                moveDownBtn.className = 'action-btn';
+                moveDownBtn.innerHTML = '<i class="fas fa-arrow-down"></i>';
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'action-btn';
+                removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                
+                // Remove file functionality
+                removeBtn.addEventListener('click', function() {
+                    fileItem.remove();
+                });
+                
+                fileActions.appendChild(moveUpBtn);
+                fileActions.appendChild(moveDownBtn);
+                fileActions.appendChild(removeBtn);
+                
+                fileItem.appendChild(fileName);
+                fileItem.appendChild(fileActions);
+                
+                fileList.appendChild(fileItem);
+            }
+        }
+
+        // Process button functionality
+        document.getElementById('processBtn').addEventListener('click', function() {
+            const fileList = document.getElementById('fileList');
+            if (fileList.children.length === 0) {
+                alert('Please add at least one file to process.');
+                return;
+            }
+            
+            // For demo purposes, we'll simulate processing
+            alert('Processing your files... This would normally process your PDF files.');
+            
+            // Show interstitial ad after processing
+            showInterstitialAd();
+            
+            // Close modal after "processing"
+            document.getElementById('toolModal').style.display = 'none';
+        });
+
+        // Initialize AdMob when page loads
+        window.addEventListener('load', initializeAdMob);
+    </script>
+</body>
+</html>
